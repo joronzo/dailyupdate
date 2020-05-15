@@ -23,18 +23,18 @@ def news():
     #reddit = praw.Reddit(client_id='my_client_id', client_secret='my_client_secret', user_agent='my_user_agent')
 
     hot_postsNEWS = reddit.subreddit('Worldnews').hot(limit=7)
-    top_postsEcon = reddit.subreddit('Economy').top(limit=5)
-    top_postsTR = reddit.subreddit('Truereddit').top(limit=3)
+    hot_postsEcon = reddit.subreddit('Economy').hot(limit=5)
+    hot_postsTR = reddit.subreddit('Truereddit').hot(limit=3)
     
     for post in hot_postsNEWS:
         print('News: \t\t' + post.title)
         time.sleep(1.25)
 
-    for post in top_postsTR:
+    for post in hot_postsTR:
         print('Truereddit: \t' + post.title)
         time.sleep(1.25)
 
-    for post in top_postsEcon:
+    for post in hot_postsEcon:
         print('Economy: \t' + post.title)
         time.sleep(1.25)
 
@@ -42,17 +42,22 @@ def news():
 #note weather is an object and temp is a dictionary value
 def weather():
     #owm = pyowm.OWM('API Key here')
-
     obs = owm.weather_at_place('Boston, US')
     w = obs.get_weather()
     w2 = w.get_detailed_status()
     t = w.get_temperature('fahrenheit')
-    print('\nThere are ' + str(w2) + ' in Boston and the temperature is ' + str(round(t['temp'])) + ' degrees')
+    print('\nThere\'s ' + str(w2) + ' in Boston and the temperature is ' + str(round(t['temp'])) + ' degrees')
 
 
 financials()
 news()
 weather()
+
+
+
+
+
+
 
 
 
